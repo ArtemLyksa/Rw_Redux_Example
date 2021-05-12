@@ -27,3 +27,17 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
+import ReSwift
+
+func fetchTunes(state: AppState, store: Store<AppState>) -> FetchTunesAction {
+  
+  iTunesAPI.searchFor(category: state.categoriesState.currentCategorySelected.rawValue) { imageUrls in
+    store.dispatch(SetCardsAction(cardImageUrls: imageUrls))
+  }
+  
+  return FetchTunesAction()
+}
+
+struct FetchTunesAction: Action {
+}

@@ -28,9 +28,16 @@
  * THE SOFTWARE.
  */
 
+import ReSwift
 
 struct MemoryCard {
   let imageUrl: String
   var isFlipped: Bool
   var isAlreadyGuessed: Bool
+}
+
+struct GameState: StateType {
+  var memoryCards: [MemoryCard]
+  var showLoading: Bool
+  var gameFinished: Bool
 }
