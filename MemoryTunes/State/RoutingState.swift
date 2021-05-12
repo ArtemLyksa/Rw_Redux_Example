@@ -27,3 +27,12 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+import ReSwift
+
+struct RoutingState: StateType {
+  var navigationState: RoutingDestination
+  
+  init(navigationState: RoutingDestination = .menu) {
+    self.navigationState = navigationState
+  }
+}

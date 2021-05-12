@@ -31,5 +31,6 @@
 import ReSwift
 
 struct AppState: StateType {
+  let routingState: RoutingState
   
 }
