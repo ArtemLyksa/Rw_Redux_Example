@@ -28,8 +28,42 @@
  * THE SOFTWARE.
  */
 
-import UIKit
+import ReSwift
 
 final class MenuTableViewController: UITableViewController {
+  
+  // 1
+  var tableDataSource: TableDataSource<UITableViewCell, String>?
+  
+  override func viewWillAppear(_ animated: Bool) {
+    super.viewWillAppear(animated)
+    // 2
+    store.subscribe(self) {
+      $0.select {
+        $0.menuState
+      }
+    }
+  }
+  
+  override func viewWillDisappear(_ animated: Bool) {
+    super.viewWillDisappear(animated)
+    // 3
+    store.unsubscribe(self)
+  }
+}
 
+// MARK: - StoreSubscriber
+extension MenuTableViewController: StoreSubscriber {
+  
+  func newState(state: MenuState) {
+    // 4
+    tableDataSource = TableDataSource(cellIdentifier:"TitleCell", models: state.menuTitles) { cell, model in
+      cell.textLabel?.text = model
+      cell.textLabel?.textAlignment = .center
+      return cell
+    }
+    
+    tableView.dataSource = tableDataSource
+    tableView.reloadData()
+  }
 }
