@@ -62,6 +62,8 @@ final class AppRouter {
         return
       }
     }
+    
+    navigationController.pushViewController(viewController, animated: animated)
   }
     
   private func instantiateViewController(identifier: String) -> UIViewController {
