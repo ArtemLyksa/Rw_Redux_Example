@@ -33,7 +33,7 @@ import Foundation
 final class iTunesAPI {
   static func searchFor(category: String, completion: @escaping ([String]) -> Void) {
     
-    let urlString = "https://itunes.apple.com/search?term=\(category)&media=music"
+    let urlString = "https://itunes.apple.com/search?term=\(category)"
     let urlRequest: URLRequest = URLRequest(url: URL(string: urlString)!)
     let session = URLSession.shared
     

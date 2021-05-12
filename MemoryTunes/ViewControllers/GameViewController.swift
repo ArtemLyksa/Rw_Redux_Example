@@ -97,6 +97,8 @@ extension GameViewController: StoreSubscriber {
 
 // MARK: - UICollectionViewDelegate
 extension GameViewController: UICollectionViewDelegate {
+  
   func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+    store.dispatch(FlipCardAction(cardIndexToFlip: indexPath.row))
   }
 }
