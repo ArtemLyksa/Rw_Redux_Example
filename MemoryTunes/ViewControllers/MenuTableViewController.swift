@@ -36,6 +36,7 @@ final class MenuTableViewController: UITableViewController {
   var tableDataSource: TableDataSource<UITableViewCell, String>?
   
   override func viewWillAppear(_ animated: Bool) {
+    store.dispatch(RoutingAction(destination: .menu))
     super.viewWillAppear(animated)
     // 2
     store.subscribe(self) {
@@ -65,5 +66,16 @@ extension MenuTableViewController: StoreSubscriber {
     
     tableView.dataSource = tableDataSource
     tableView.reloadData()
+  }
+  
+  override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    var routeDestination: RoutingDestination = .categories
+    switch(indexPath.row) {
+    case 0: routeDestination = .game
+    case 1: routeDestination = .categories
+    default: break
+    }
+    
+    store.dispatch(RoutingAction(destination: routeDestination))
   }
 }
